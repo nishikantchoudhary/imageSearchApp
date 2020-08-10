@@ -25,8 +25,14 @@ import static com.axxess.imageapp.constants.Constants.IMAGE_SELECTED_KEY;
 
 public class ImageCommentsActivity extends AppCompatActivity {
 
+    /**
+     * Selected image entity.
+     */
     private ImageEntity mImageEntity;
 
+    /**
+     * Selected image view.
+     */
     private ImageView mImageView;
 
 

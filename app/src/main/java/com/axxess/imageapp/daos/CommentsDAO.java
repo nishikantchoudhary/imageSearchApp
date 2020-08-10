@@ -18,6 +18,6 @@ public interface CommentsDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void addCommentInLocalDB(Comment comment);
 
-   @Query("DELETE FROM comments_table")
+    @Query("DELETE FROM comments_table")
     void deleteAll();
 }

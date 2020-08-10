@@ -14,7 +14,13 @@ import java.util.List;
 
 public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.CommentViewHolder> {
 
+    /**
+     * Instance of LayoutInflater.
+     */
     private final LayoutInflater mInflater;
+    /**
+     * List of comments
+     */
     private List<Comment> mComments;
 
     public CommentsAdapter(Context context) {
@@ -23,8 +29,6 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.Commen
 
     class CommentViewHolder extends RecyclerView.ViewHolder {
         private CommentItemRecyclerViewBinding mCommentRecyclerViewBinding;
-        private CheckBox checkBox;
-
         private CommentViewHolder(CommentItemRecyclerViewBinding CommentRecyclerViewBinding) {
             super(CommentRecyclerViewBinding.getRoot());
             this.mCommentRecyclerViewBinding = CommentRecyclerViewBinding;
@@ -47,6 +51,11 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.Commen
         }
     }
 
+    /**
+     * Update list of comments.
+     *
+     * @param Comments list of comments
+     */
     public void setComments(List<Comment> Comments) {
         mComments = Comments;
         notifyDataSetChanged();

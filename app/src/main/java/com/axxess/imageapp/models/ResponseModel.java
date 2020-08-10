@@ -5,11 +5,11 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Example {
+public class ResponseModel {
 
     @SerializedName("data")
     @Expose
-    private List<Datum> data = null;
+    private List<DataModel> data = null;
     @SerializedName("success")
     @Expose
     private Boolean success;
@@ -17,11 +17,11 @@ public class Example {
     @Expose
     private Integer status;
 
-    public List<Datum> getData() {
+    public List<DataModel> getData() {
         return data;
     }
 
-    public void setData(List<Datum> data) {
+    public void setData(List<DataModel> data) {
         this.data = data;
     }
 

@@ -10,6 +10,11 @@ import com.axxess.imageapp.models.Comment;
 @Database(entities = {Comment.class}, version = 1, exportSchema = false)
 public abstract class CommentsDatabase extends RoomDatabase {
 
+    /**
+     * Returns dao.
+     *
+     * @return dao
+     */
     public abstract CommentsDAO commentsDAO();
 
     // marking the instance as volatile to ensure atomic access to the variable

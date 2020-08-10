@@ -1,7 +1,7 @@
 package com.axxess.imageapp.constants;
 
 public class Constants {
-    public static final String BASE_URL = "";
+    public static final String BASE_URL = "https://api.imgur.com/3/gallery/";
 
     public static final String API_KEY = "Authorization";
 

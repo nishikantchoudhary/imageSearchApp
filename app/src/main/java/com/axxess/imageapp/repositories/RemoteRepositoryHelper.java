@@ -1,6 +1,5 @@
 package com.axxess.imageapp.repositories;
 
-import android.os.Handler;
 import android.util.Log;
 import com.axxess.imageapp.apiclients.ImageApiClient;
 import com.axxess.imageapp.apis.IImageSourceApi;
@@ -21,8 +20,6 @@ import java.util.List;
 public class RemoteRepositoryHelper {
 
     private static final String TAG = RemoteRepositoryHelper.class.getSimpleName();
-
-    private Handler mHandler;
     /**
      * Load group api header parameter hash map.
      */
@@ -38,18 +35,18 @@ public class RemoteRepositoryHelper {
     public void searchImages(String query, final IDataReceivedListener dataReceivedListener) {
         addCommonHeaders();
         final IImageSourceApi apiInterface = ImageApiClient.getClient().create(IImageSourceApi.class);
-        apiInterface.searchImages(mHeadersMap, query).enqueue(new Callback<Example>() {
+        apiInterface.searchImages(mHeadersMap, query).enqueue(new Callback<ResponseModel>() {
             @Override
-            public void onResponse(Call<Example> call, Response<Example> response) {
+            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                 if (response != null && response.body() != null && response.body().getData() != null) {
                     List<ImageEntity> imageEntities = new ArrayList<>();
-                    for (Datum datum : response.body().getData()) {
-                        if (datum.getImages() != null && datum.getImages().size() > 0) {
-                            for (Image image : datum.getImages()) {
+                    for (DataModel dataModel : response.body().getData()) {
+                        if (dataModel.getImages() != null && dataModel.getImages().size() > 0) {
+                            for (Image image : dataModel.getImages()) {
                                 ImageEntity imageEntity = new ImageEntity();
                                 imageEntity.setLink(image.getLink());
                                 imageEntity.setId(image.getId());
-                                imageEntity.setName(datum.getTitle());
+                                imageEntity.setName(dataModel.getTitle());
                                 imageEntities.add(imageEntity);
                             }
                         }
@@ -64,7 +61,7 @@ public class RemoteRepositoryHelper {
             }
 
             @Override
-            public void onFailure(Call<Example> call, Throwable t) {
+            public void onFailure(Call<ResponseModel> call, Throwable t) {
                 Log.d(TAG, t.getMessage());
                 RepositoryError repositoryError = new RepositoryError();
                 repositoryError.setCode(0);
